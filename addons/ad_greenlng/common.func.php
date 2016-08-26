@@ -1,9 +1,11 @@
 <?php
-
+//DIRECTORY_SEPARATOR PHP内置常量系统分隔符
+//define('ROOT',dirname(__FILE__)."\upload"); == define('ROOT',dirname(__FILE__).DIRECTORY_SEPARATOR."upload");
+//define('ROOT',dirname(__FILE__).DIRECTORY_SEPARATOR."upload"); 无错写法
 
 function get_house_params()
 {
-    return array('specialtype' => array('name' => '特色', 'values' => array(1 => '海景地产', 2 => '养老地产', 3 => '不限购')), 'housetype' => array('name' => '类别', 'values' => array(1 => '自住型商品房', 2 => '建筑综合体')));
+    return array('specialtype' => array('name' => '特色', 'values' => array(1 => '安易迅00型', 2 => '安易迅01型', 3 => '不限购')), 'housetype' => array('name' => '类别', 'values' => array(1 => '安易迅00型', 2 => '安易迅01型')));
 }
 
 function ad_greenlng_getpath($file)
@@ -44,10 +46,11 @@ function adgreenlng_replace_variable($str, $vars)
     }
     return $str;
 }
-
-function adgreenlng_calculator_url()
+//内置大宗lng出厂价比对数据来源于第三方网站
+//@adgreenlng_lngprice_url() 第三方大宗交易lng出厂价对比工具
+function adgreenlng_lngprice_url()
 {
-    return 'http://m.db.house.qq.com/calculator/';
+    return 'http://price.sci99.com/search.aspx?keyword=lng%20%E5%87%BA%E5%8E%82%E4%BB%B7&RequestId=eb2501e9626a842b';
 }
 
 function adgreenlng_qrcode_png($text, $outfile = false, $level = QR_ECLEVEL_L, $size = 10, $margin = 4, $saveandprint = false)
@@ -81,5 +84,6 @@ function adgreenlng_get_distance($lat1, $lng1, $lat2, $lng2)
 
 function adgreenlng_hide_mobile($mobile)
 {
+   //正则表达式替换手机号码是1开头前五位数字
     return preg_replace('/(\d{3})(\d{4})/', "$1****", $mobile);
 }

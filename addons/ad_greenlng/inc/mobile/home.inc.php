@@ -19,7 +19,7 @@ class Ad_greenlng_doMobileHome extends Ad_greenlngModuleSite
         global $_W, $_GPC, $do;
         $title = '首页';
         $_share = $this->_share;
-        $calculator_url = $this->module['config']['base']['calculator_url'] ? $this->module['config']['base']['calculator_url'] : adgreenlng_calculator_url();
+        $calculator_url = $this->module['config']['base']['calculator_url'] ? $this->module['config']['base']['calculator_url'] : adgreenlng_lngprice_url();
         $sql = "SELECT * FROM " . tablename('adgreenlng_looking');
         $sql .= " WHERE `uniacid` = " . $_W['uniacid'];
         $sql .= " AND `status` != 2 AND `regdeadline` > " . TIMESTAMP . " ORDER BY `displayorder` DESC LIMIT 4";

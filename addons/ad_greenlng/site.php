@@ -148,6 +148,10 @@ class Ad_greenlngModuleSite extends WeModuleSite
         }
     }
 
+    /**
+     * @param $message_info
+     * @return array|bool|null|WeiXinAccount|WeiXinPlatform|YiXinAccount
+     */
     public function sendTemplateMessage($message_info)
     {
         global $_W;
@@ -185,7 +189,7 @@ class Ad_greenlngModuleSite extends WeModuleSite
         $template_variable = explode("\n", $template_variable);
         foreach ($template_variable as $line) {
             $arr = explode("=", trim($line));
-            $message['postdata'][trim($arr[0])] = array('value' => adgreenlng_replace_variable(trim($arr[1]), $message_info['vars']), 'color' => '#173177');
+            $message['postdata'][trim($arr[0])] = ['value' => adgreenlng_replace_variable(trim($arr[1]), $message_info['vars']), 'color' => '#173177'];
         }
         $ret = $account->sendTplNotice($message_info['openid'], $message['template_id'], $message['postdata'], $message['url'], $message['topcolor']);
         if ($ret !== true) {

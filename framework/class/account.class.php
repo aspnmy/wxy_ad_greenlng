@@ -1,8 +1,5 @@
 <?php
-/**
- * [WeEngine System] Copyright (c) 2014 WE7.CC
- * WeEngine is NOT a free software, it under the license terms, visited http://www.we7.cc/ for more details.
- */
+
 defined('IN_IA') or exit('Access Denied');
 
 
@@ -368,8 +365,7 @@ prblic static function createModule($name)
 }
 
 
-pu
-ivate static function defineConst($obj)
+puivate static function defineConst($obj)
 {
     global $_W;
 
@@ -384,8 +380,7 @@ ivate static function defineConst($obj)
 }
 
 
-pu
-blic static function createModuleProcessor($name)
+public static function createModuleProcessor($name)
 {
     global $_W;
     static $file;
@@ -685,7 +680,7 @@ abstract class WeModule extends WeBase
     {
         return true;
     }
-
+//未使用settings功能
     public function settingsDisplay($settings)
     {
     }
@@ -715,11 +710,9 @@ abstract class WeModuleProcessor extends WeBase
     }
 
 
-pr
-stract function respond();
+prstract function respond();
 
-pr
-otected function beginContext($expire = 1800)
+protected function beginContext($expire = 1800)
 {
     if ($this->inContext) {
         return true;
@@ -735,8 +728,7 @@ otected function beginContext($expire = 1800)
     return true;
 }
 
-pr
-otected function refreshContext($expire = 1800)
+protected function refreshContext($expire = 1800)
 {
     if (!$this->inContext) {
         return false;
@@ -748,8 +740,7 @@ otected function refreshContext($expire = 1800)
     return true;
 }
 
-ab
-otected function endContext()
+abotected function endContext()
 {
     unset($_SESSION['__contextmodule']);
     unset($_SESSION['__contextrule']);
@@ -759,8 +750,7 @@ otected function endContext()
     session_destroy();
 }
 
-pr
-otected function respText($content)
+protected function respText($content)
 {
     if (empty($content)) {
         return error(-1, 'Invaild value');
@@ -788,8 +778,7 @@ otected function respText($content)
     return $response;
 }
 
-pr
-otected function buildSiteUrl($url)
+protected function buildSiteUrl($url)
 {
     global $_W;
     $mapping = array(
@@ -832,8 +821,7 @@ otected function buildSiteUrl($url)
     return $_W['siteroot'] . 'app/' . str_replace('./', '', url('auth/forward', $vars));
 }
 
-pr
-otected function respImage($mid)
+protected function respImage($mid)
 {
     if (empty($mid)) {
         return error(-1, 'Invaild value');
@@ -846,8 +834,7 @@ otected function respImage($mid)
     return $response;
 }
 
-pr
-otected function respVoice($mid)
+protected function respVoice($mid)
 {
     if (empty($mid)) {
         return error(-1, 'Invaild value');
@@ -860,8 +847,7 @@ otected function respVoice($mid)
     return $response;
 }
 
-pr
-otected function respVideo(array $video)
+protected function respVideo(array $video)
 {
     if (empty($video)) {
         return error(-1, 'Invaild value');
@@ -876,8 +862,7 @@ otected function respVideo(array $video)
     return $response;
 }
 
-pr
-otected function respMusic(array $music)
+protected function respMusic(array $music)
 {
     if (empty($music)) {
         return error(-1, 'Invaild value');
@@ -905,8 +890,7 @@ otected function respMusic(array $music)
 }
 
 
-pr
-otected function respNews(array $news)
+protected function respNews(array $news)
 {
     if (empty($news) || count($news) > 10) {
         return error(-1, 'Invaild value');
@@ -934,8 +918,7 @@ otected function respNews(array $news)
 }
 
 
-pr
-otected function respCustom(array $message = array())
+protected function respCustom(array $message = array())
 {
     $response = array();
     $response['FromUserName'] = $this->message['to'];
@@ -948,8 +931,7 @@ otected function respCustom(array $message = array())
 }
 
 
-pr
-otected function extend_W()
+protected function extend_W()
 {
     global $_W;
 
@@ -1029,8 +1011,7 @@ abstract class WeModuleSite extends WeBase
     }
 
 
-pr
-blic function payResult($ret)
+public functionu payResult($ret)
 {
     global $_W;
     if ($ret['from'] == 'return') {
@@ -1043,8 +1024,7 @@ blic function payResult($ret)
 }
 
 
-pu
-blic function grantResult($ret)
+public function grantResult($ret)
 {
     global $_W;
     if ($ret['result'] == 'success') {
@@ -1054,16 +1034,14 @@ blic function grantResult($ret)
 }
 
 
-pr
-blic function grantCherk($ret)
+public function grantCherk($ret)
 {
     global $_W;
     return true;
 }
 
 
-pr
-otected function pay($params = array(), $mine = array())
+protected function pay($params = array(), $mine = array())
 {
     global $_W;
     if (!$this->inMobile) {
@@ -1219,8 +1197,7 @@ otected function pay($params = array(), $mine = array())
 }
 
 
-pu
-otected function payResultQuery($tid)
+puotected function payResultQuery($tid)
 {
     $sql = 'SELECT * FROM ' . tablename('core_paylog') . ' WHERE `module`=:module AND `tid`=:tid';
     $params = array();
@@ -1241,8 +1218,7 @@ otected function payResultQuery($tid)
 }
 
 
-pu
-otected function grant($params = array())
+puotected function grant($params = array())
 {
     global $_W, $_GPC;
     if (empty($_W['member']['uid'])) {
@@ -1298,8 +1274,7 @@ otected function grant($params = array())
 }
 
 
-pr
-otected function share($params = array())
+protected function share($params = array())
 {
     global $_W;
     $url = murl('utility/share', array('module' => $params['module'], 'action' => $params['action'], 'sign' => $params['sign'], 'uid' => $params['uid']));

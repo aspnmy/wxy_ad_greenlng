@@ -115,6 +115,9 @@ class Ad_greenlng_doMobilePartner extends Ad_greenlngModuleSite
         include $this->template('partner');
     }
 
+    /**
+     * @return array
+     */
     private function get_recommend_house()
     {
         global $_W, $_GPC;
@@ -176,11 +179,11 @@ class Ad_greenlng_doMobilePartner extends Ad_greenlngModuleSite
                     'partnerid' => 0,
                     'realname' => $realname,
                     'mobile' => $mobile,
-                    'enterprisename' => $enterprisename,
+                    'enterprisename' => $enterprisename,//企业名称
                     'houseid' => $houseid,
                     'remark' => $remark,
                     'dateline' => TIMESTAMP,
-                    'recommendpid' => $this->partner['id'],
+                    'recommendpid' => $this->partner['id'],//推荐人ID:经纪人ID
                     'laststatusid' => $statusid,
                 );
                 pdo_insert('adgreenlng_customer', $data);
@@ -190,7 +193,7 @@ class Ad_greenlng_doMobilePartner extends Ad_greenlngModuleSite
                         'uniacid' => $_W['uniacid'],
                         'customerid' => $id,
                         'statusid' => $statusid,
-                        'partnerid' => $this->partner['id'],
+                        'partnerid' => $this->partner['id'],//推荐人ID:经纪人ID
                         'remark' => $remark,
                         'dateline' => TIMESTAMP,
                     );
